@@ -1,9 +1,9 @@
 import { StatusBar } from "expo-status-bar";
 import { Image, ImageBackground, StyleSheet, Text, View } from "react-native";
 
-export default function App() {
-  const bgAsset = require("./assets/img/Background.png");
-  return (
+const HomeScreen =()=>{
+    const bgAsset = require("./assets/img/Background.png");
+    return (
     <View style={styles.container}>
       <ImageBackground source={bgAsset} style={styles.backgroundImage}>
         <View style={styles.header}>
@@ -78,105 +78,106 @@ export default function App() {
       <StatusBar style="auto" />
     </View>
   );
-}
 
+}
 const styles = StyleSheet.create({
-  container: {
-    flex: 1,
-    backgroundColor: "#F8F9FA",
-  },
-  backgroundImage: {
-    flex: 1,
-    width: "100%",
-    height: "100%",
-  },
-  header: {
-    paddingTop: 40,
-    flexDirection: "row",
-    justifyContent: "space-between",  // Set justifyContent to "space-between"
-    marginHorizontal: 16,
-  },
-  textGreeting: {
-    fontSize: 16,
-    marginBottom: 5,
-    color: "white",
-  },
-  textCustomerNama: {
-    fontSize: 20,
-    fontWeight: "bold",
-    marginBottom: 10,
-    color: "white",
-  },
-  cardInfo: {
-    marginHorizontal: 24,
-    backgroundColor: "white",
-    borderRadius: 10,
-    padding: 16,
-  },
-  saldoContainer: {
-    flexDirection: "row",
-    alignItems: "center",
-    justifyContent: "space-between",
-  },
-  saldoTitle: {
-    color: "#852884",
-    fontSize: 14,
-  },
-  saldoAmount: {
-    color: "#852884",
-    fontSize: 16,
-    fontWeight: "600",
-  },
-  borderLine: {
-    borderBottomWidth: 1,
-    borderBottomColor: "#F2F2F2",
-    marginVertical: 16,
-  },
-  menuSaldo: {
-    alignItems: "center",
-  },
-  menuSaldoIcon: {
-    width: 60,
-    height: 60,
-  },
-  menuSaldoName: {
-    marginTop: 10,
-    color: "#852884",
-  },
-  listPembayaran: {
-    marginHorizontal: 24,
-    marginTop: 30,
-  },
-  listPembayaranTitle: {
-    fontSize: 16,
-    fontWeight: "600",
-    color: "#852884",
-  },
-  listPembayaranMenu:{
-    marginTop:18,
-    flexDirection: "row",
-    alignItems: "center",
-    justifyContent: "space-between",
-  },
-  menuListPembayaran:{
-    width:76,
-    height:80
-  },
-  promoContainer:{
-    marginTop:32,
-    marginHorizontal:24
-  },
-  promoList:{
-    flexDirection: "row",
-    alignItems: "center",
-    justifyContent: "space-between",
-  },
-  promoListTitle:{
-    fontSize: 16,
-    fontWeight: "600",
-    color: "#852884",
-  },
-  promoListMore:{
-    color: '#39B54A'
-  }
-});
+    container: {
+      flex: 1,
+      backgroundColor: "#F8F9FA",
+    },
+    backgroundImage: {
+      flex: 1,
+      width: "100%",
+      height: "100%",
+    },
+    header: {
+      paddingTop: 40,
+      flexDirection: "row",
+      justifyContent: "space-between",  // Set justifyContent to "space-between"
+      marginHorizontal: 16,
+    },
+    textGreeting: {
+      fontSize: 16,
+      marginBottom: 5,
+      color: "white",
+    },
+    textCustomerNama: {
+      fontSize: 20,
+      fontWeight: "bold",
+      marginBottom: 10,
+      color: "white",
+    },
+    cardInfo: {
+      marginHorizontal: 24,
+      backgroundColor: "white",
+      borderRadius: 10,
+      padding: 16,
+    },
+    saldoContainer: {
+      flexDirection: "row",
+      alignItems: "center",
+      justifyContent: "space-between",
+    },
+    saldoTitle: {
+      color: "#852884",
+      fontSize: 14,
+    },
+    saldoAmount: {
+      color: "#852884",
+      fontSize: 16,
+      fontWeight: "600",
+    },
+    borderLine: {
+      borderBottomWidth: 1,
+      borderBottomColor: "#F2F2F2",
+      marginVertical: 16,
+    },
+    menuSaldo: {
+      alignItems: "center",
+    },
+    menuSaldoIcon: {
+      width: 60,
+      height: 60,
+    },
+    menuSaldoName: {
+      marginTop: 10,
+      color: "#852884",
+    },
+    listPembayaran: {
+      marginHorizontal: 24,
+      marginTop: 30,
+    },
+    listPembayaranTitle: {
+      fontSize: 16,
+      fontWeight: "600",
+      color: "#852884",
+    },
+    listPembayaranMenu:{
+      marginTop:18,
+      flexDirection: "row",
+      alignItems: "center",
+      justifyContent: "space-between",
+    },
+    menuListPembayaran:{
+      width:76,
+      height:80
+    },
+    promoContainer:{
+      marginTop:32,
+      marginHorizontal:24
+    },
+    promoList:{
+      flexDirection: "row",
+      alignItems: "center",
+      justifyContent: "space-between",
+    },
+    promoListTitle:{
+      fontSize: 16,
+      fontWeight: "600",
+      color: "#852884",
+    },
+    promoListMore:{
+      color: '#39B54A'
+    }
+  });
+export default HomeScreen
