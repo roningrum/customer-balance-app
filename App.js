@@ -1,15 +1,58 @@
 import { StatusBar } from "expo-status-bar";
-import { Image, ImageBackground, StyleSheet, Text, View } from "react-native";
+import { Image, ImageBackground, StyleSheet, Text, View, FlatList  } from "react-native";
+import UserLogic from "./src/component/UserLogic";
+import { useEffect, useState } from "react";
+import PpobLogic from "./src/component/PpobLogic";
+import PpobView from "./src/component/PpobView";
 
 export default function App() {
   const bgAsset = require("./assets/img/Background.png");
+  const userLogic = UserLogic()
+  const ppobLogic = PpobLogic()
+
+  const [userData, setUserData] = useState(null)
+  const [ppobData, setPPOBData] = useState(null)
+
+  useEffect(()=>{
+    const getAccountInfo=async()=>{
+      try{
+        setTimeout(async ()=>{
+          const userInfo = await userLogic.getUserInfo()
+          setUserData(userInfo)
+        })
+      }catch (error) {
+        console.error(error);
+        setLoading(false);
+      }
+    }
+    const getPpobMenu=async()=>{
+      try{
+        setTimeout(async ()=>{
+          const ppobMenu = await ppobLogic.getPpobMenu()
+          setPPOBData(ppobMenu.list)
+          console.log("Data PPOB", ppobMenu)
+        })
+      }catch (error) {
+        console.error(error);
+        setLoading(false);
+      }
+    }
+    getPpobMenu()
+    getAccountInfo()
+  },[])
+
+  useEffect(()=>{
+    console.log("CustData", userData)
+    console.log("PPOBData", ppobData)
+  },[userData, ppobData])
+
   return (
     <View style={styles.container}>
       <ImageBackground source={bgAsset} style={styles.backgroundImage}>
         <View style={styles.header}>
           <View style={styles.whiteText}>
             <Text style={styles.textGreeting}>Assalammualaikaum</Text>
-            <Text style={styles.textCustomerNama}>Anissa Avrillia</Text>
+            <Text style={styles.textCustomerNama}>{userData?.user?.name}</Text>
           </View>
           <Image
               source={require("./assets/img/Notification.png")}
@@ -19,7 +62,7 @@ export default function App() {
         <View style={styles.cardInfo}>
           <View style={styles.saldoContainer}>
             <Text style={styles.saldoTitle}>Saldo</Text>
-            <Text style={styles.saldoAmount}>Rp2.000.000</Text>
+            <Text style={styles.saldoAmount}>Rp {userData?.user?.balance}</Text>
           </View>
           <View style={styles.borderLine}></View>
           <View style={styles.saldoContainer}>
@@ -47,26 +90,10 @@ export default function App() {
           </View>
         </View>
         <View style={styles.listPembayaran}>
-          <Text style={styles.listPembayaranTitle}>List Pembayaran</Text>
-          <View style={styles.listPembayaranMenu}>
-          <Image
-                source={require("./assets/img/Telco.png")}
-                style={styles.menuListPembayaran}
-              />
-          <Image
-                source={require("./assets/img/Pln.png")}
-                style={styles.menuListPembayaran}
-              />
-          <Image
-                source={require("./assets/img/Pdam.png")}
-                style={styles.menuListPembayaran}
-              />
-          <Image
-                source={require("./assets/img/School.png")}
-                style={styles.menuListPembayaran}
-              />
-          </View>
-        </View>
+        <Text style={styles.listPembayaranTitle}>List Pembayaran</Text>
+        <FlatList data={ppobData} horizontal={true} renderItem={({item})=><PpobView ppob={item}/>}/>
+      </View>
+       
         <View style={styles.promoContainer}>
           <View style={styles.promoList}>
           <Text style={styles.promoListTitle}>Promo & Diskon</Text>
